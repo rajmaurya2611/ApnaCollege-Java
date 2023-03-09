@@ -1,0 +1,20 @@
+import java.util.*;
+class Learn
+{
+    public static void main(String args[])
+    {
+        char a;
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter Your Input");
+        a = sc.next().charAt(0);
+        switch(a){
+            case 'a':System.out.println("A");
+            break;
+            case 'b':
+            System.out.println("B");
+            break;
+            default:
+            System.out.println("Wrong Input");
+        }
+    }
+}
