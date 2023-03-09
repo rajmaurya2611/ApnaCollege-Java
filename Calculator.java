@@ -30,6 +30,8 @@ class Calculator{
         res=a%b;
         System.out.println(res);
         break;
+        default:
+        System.out.println("Wrong Input");             
     }
 }
 }
