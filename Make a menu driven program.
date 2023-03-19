@@ -1,0 +1,40 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class HelloWorld {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int m;int n;
+  /*      while(true){
+            System.out.println("Enter1/0");
+            n=sc.nextInt();
+            if(n==0)
+            break;
+            else{
+                System.out.println("Marks");
+                m=sc.nextInt();
+                if(m>=90)
+                System.out.println("This is Good");
+                else if(m>=60)
+                System.out.println("This is also Good");
+                else if(m>=0)
+                System.out.println("This is Good as well");*/
+                do{
+            System.out.println("Enter1/0");
+            n=sc.nextInt();
+            if(n==0)
+            break;
+            else{
+                System.out.println("Marks");
+                m=sc.nextInt();
+                if(m>=90)
+                System.out.println("This is Good");
+                else if(m>=60)
+                System.out.println("This is also Good");
+                else if(m>=0)
+                System.out.println("This is Good as well");
+                }
+            }while(n==1);
+        }
+    }
+                
