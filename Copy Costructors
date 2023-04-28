@@ -1,0 +1,27 @@
+public class copy{
+    public static void main(String args[]){
+        Student s1= new Student();
+        Student s2= new Student("Raj");
+        Student s3=new Student(41);
+
+    }
+}
+
+class Student{
+    String name; //use Capital S for string
+    int roll;
+
+    Student(){
+        System.out.println("heyy");
+        
+
+    }
+    Student (String name){ //use Capital S for string
+        this.name=name;
+        System.out.println(name);
+    }
+    Student (int roll){
+        this.roll=roll;
+        System.out.println(roll);
+    }
+}
