@@ -1,0 +1,273 @@
+import javax.naming.ldap.SortResponseControl;
+import javax.swing.plaf.basic.BasicBorders.SplitPaneBorder;
+
+public class LL {
+    class Node{
+        int data;
+        Node next;
+
+        Node(int data){
+            this.data=data;
+            this.next=null;
+
+        }
+    }
+
+    public static  Node Head;
+    public static Node Tail;
+    public static int size;
+
+    public void addfirst(int data){
+        Node newnode= new Node(data);
+        size++;
+        if(Head == null){
+        Head =Tail=newnode;
+        return;
+        }
+
+        newnode.next= Head;
+
+        Head = newnode;
+    }
+
+    public  void addlast(int data){
+
+        Node newnode=new Node(data);
+        size++;
+
+        if(Head==null){
+            Tail=Head=newnode;
+        }
+
+        Tail.next=newnode;
+
+        Tail=newnode;
+    }
+
+    public void add(int index, int data){
+
+        if (index ==0){
+            addfirst(data);
+            return;
+        }
+        Node newnode=new Node(data);
+        size++;
+        Node temp=Head;
+
+        int i =0;
+
+        while(i<index-1){
+            temp=temp.next;
+            i++;
+        }
+
+ 
+        newnode.next=temp.next;
+        temp.next=newnode;
+
+    }
+    
+    public void print(){
+        Node temp=Head;
+
+        if(Head == null){
+            System.out.println("LL is Empty");
+            return;
+        }
+
+        while(temp!=null){
+            System.out.print(temp.data + "->");
+            temp=temp.next;
+        }
+        System.out.println("null");
+    }
+
+    public int removefirst(){
+
+        //size =0;
+        if(size==0){
+            System.out.println("LL is empty");
+            return Integer.MIN_VALUE;
+        }
+
+        else if(size==1){
+            int val=Head.data;
+            Head=Tail=null;
+            size=0;
+            return val;
+            
+        }
+        int val = Head.data;
+
+        Head=Head.next;
+        size--;
+        return val;
+        
+    }
+
+    public int removelast(){
+        if(size==0){
+            System.out.println("LL is empty");
+        }
+        else if(size==1){
+            int val = Head.data;
+            Head=Tail=null;
+            size=0;
+            return val;
+        }
+
+        Node prev=Head;
+        int i =0;
+        for(i=0;i<size-2;i++){
+            prev=prev.next;
+        }
+
+        int val=prev.next.data;
+        prev.next=null;
+        Tail=prev;
+        size--;
+        return val;
+    }
+
+    public int itrsearch(int key){
+        int i=0;
+        Node temp=Head;
+
+        while(temp!=null){
+            if(temp.data==key)
+            return i;
+            else{
+                temp=temp.next;
+                i++;
+            }
+        }
+        return -1;
+    }
+
+    public int recsearch(int key){
+        return Helper(Head,key);
+    }
+
+    public int Helper(Node Head, int key){
+
+        if(Head == null){
+            return -1;
+        }
+        if(Head.data==key){
+            return 0;
+        }
+
+        int idx=Helper(Head.next,key);
+
+        if(idx==-1){
+            return -1;
+        }
+
+        return idx+1;
+    }
+
+    public void reverse(){
+        Node prev=null;
+        Node curr=Tail=Head;
+        Node next;
+
+        while(curr!=null){
+            next=curr.next;
+            curr.next =prev;
+            prev=curr;
+            curr=next;
+        
+        }
+        Head=prev;
+    }
+
+    public void delnfromback(int n){
+
+        if(n==size){
+            Head=Head.next;
+            return;
+        }
+        int n1=(size-n);
+        
+        Node prev=Head;
+        int i=0;
+
+        while(i<n1-1){
+            prev=prev.next;
+            i++;
+        }
+
+        prev.next=prev.next.next;
+    }
+
+    //Slow Fast Technique
+    // slow+=1
+// FAST +=2
+
+    public Node findmid(Node Head){
+        Node slow=Head;
+        Node fast=Head;
+
+        while(fast!=null && fast.next !=null){
+        slow=slow.next;
+        fast=fast.next.next;
+
+        }
+        return slow;
+    }
+
+    public boolean checkpalindrome(){
+        if(Head ==null||Head.next == null){
+            return true;
+        }
+
+        Node mid = findmid(Head);
+
+        Node next;
+        Node curr=mid;
+        Node prev=null;
+
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev = curr;
+            curr=next;
+        }
+
+        Node right = prev;
+        Node left = Head;
+
+        while(right!=null){
+            if(left.data!=right.data){
+                return false;
+            }
+            left=left.next;
+                right=right.next;
+        }
+        return true;
+    }
+    public static void main(String[] args) {
+        
+        LL l1=new LL();
+        l1.print();
+        l1.addfirst(2);
+        l1.addfirst(1);
+        l1.addlast(2);
+        l1.addlast(1);
+        //l1.add(2,1);
+        
+        //l1.checkpalindrome();
+        l1.print();
+        //l1.removefirst();
+        //l1.print();
+        //System.out.println(l1.removelast());
+        //l1.delnfromback(5);
+        //l1.print();
+        //System.out.println(l1.size);
+        //System.out.println(l1.recsearch(3));
+        System.out.println(l1.checkpalindrome());
+
+        
+
+    }
+}
