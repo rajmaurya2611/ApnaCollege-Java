@@ -1,0 +1,52 @@
+//Implementation of Stack using ArrayList
+
+import java.util.*;
+public class Main {
+    public static class Stack1{
+        static ArrayList<Integer> list=new ArrayList<>();
+
+        //Functions
+        //1.isempty
+        //2.pop
+        //3.push
+        //4.peek
+
+        public static boolean isEmpty(){
+            return (list.size()==0);
+        }
+
+        public static void push(int data){
+            list.add(data);
+        }
+
+        public static int pop(){
+            if(list.isEmpty()==true)
+            return -1;
+
+            int top = list.get(list.size()-1);
+            //System.out.println(top);
+            list.remove(list.size()-1);
+            return top;
+        }
+
+        public static int peek(){
+            return list.get(list.size()-1);
+        }
+
+    } 
+
+    public static void main(String[] args) {
+        Stack1 s= new Stack1();
+        s.push(1);
+        s.push(2);
+        s.push(3);
+
+        while(s.isEmpty()!=true){
+            System.out.println(s.peek());
+            s.pop();
+           
+        }
+
+    }
+    
+}
