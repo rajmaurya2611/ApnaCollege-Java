@@ -1,0 +1,40 @@
+// String reverse using Stack
+
+import java.util.*;
+class Main{
+    public static void pushbottom(Stack<Integer> s, int d){
+        if(s.isEmpty()){
+            s.push(d);
+            return;
+        }
+        
+        int top = s.pop();
+        pushbottom(s,d);
+        s.push(top);
+    }
+    
+    public static String reverse(String str){
+        Stack<Character> s = new Stack<>();
+        int i=0;
+        while(i<str.length()){
+            s.push(str.charAt(i));
+            i++;
+        }
+        
+        StringBuilder s1=new StringBuilder();
+        while(!s.isEmpty()){
+            char top = s.pop();
+            s1.append(top);
+        }
+        
+        return s1.toString();
+    }
+    
+    public static void main(String args[]){
+        String str="abcd";
+        String result = reverse(str);
+        System.out.println(result);
+        
+    }
+}
+
