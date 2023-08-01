@@ -1,0 +1,35 @@
+
+// GREATEST NEXT ELEMENT
+
+
+import java.util.*;
+public class Main{
+        
+        public static void greatest(int[]nums,int[]ans){
+            Stack<Integer> s= new Stack<>();
+            
+            for(int i=nums.length-1;i>=0;i--){
+                while(!s.isEmpty()&&nums[i]>nums[s.peek()]){
+                    s.pop();
+                }
+                if(s.isEmpty()==true){
+                    ans[i]=-1;
+                }
+                else{
+                    ans[i]=nums[s.peek()];
+                }
+                s.push(i);
+            }
+        }
+    public static void main(String args[]){
+        
+        int nums[] ={1, 8, 2, 3,5,6};
+        
+        int ans[]=new int[nums.length];
+        greatest(nums,ans);
+        
+        for(int i =0;i<ans.length;i++){
+            System.out.print(ans[i]+ " ");
+        }
+    }
+}
