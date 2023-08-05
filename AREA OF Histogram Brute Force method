@@ -1,0 +1,81 @@
+//AREA OF Histogram Brute Force method
+
+import java.util.*;
+class Main{
+    
+    public static int largestRectangleArea(int[] heights) {
+        Stack<Integer> s3=new Stack<>();
+        
+        int l=heights.length;
+        int ls[]=new int[l];
+        int rs[]=new int[l];
+        
+        for(int i=0;i<l;i++){
+            ls[i]=-1;
+            rs[i]=l;
+        }
+        
+        for(int i=0;i<l;i++){
+            System.out.print(ls[i]+" ");
+        }
+         
+         System.out.println();
+         for(int i=0;i<l;i++){
+            System.out.print(rs[i]+" ");
+        }
+          
+           
+        //right smaller
+        for(int i=0;i<l-1;i++){
+            for(int k=i+1;k<l;k++){
+                if(heights[k]<heights[i]){
+                    rs[i]=k;
+                    break;
+                }
+            }
+        }
+        System.out.println();
+        System.out.println(l);
+         for(int i=0;i<l;i++){
+            System.out.print(rs[i]+" ");
+        }
+        
+        //left smaller
+        for(int i=l-1;i>0;i--){
+            int k =i-1;
+            while(k>=0){
+                if(heights[k]<heights[i]){
+                    ls[i]=k;
+                    break;
+                }
+                k--;
+            }
+        }
+        
+        System.out.println(l);
+         for(int i=0;i<l;i++){
+            System.out.print(ls[i]+" ");
+        }
+         
+        
+        //calculation
+        s3.push(-1);
+        for(int i =0;i<l;i++){
+            int a=heights[i]*(rs[i]-(ls[i])-1);
+            if(a>s3.peek()){
+                s3.push(a);
+            }
+        }
+        
+        int result = s3.pop();
+            return(result);
+
+    }   
+        
+    public static void main(String args[]){
+        
+        int a[]={2,4};
+        int result = largestRectangleArea(a);
+        System.out.println(result);
+    }
+}
