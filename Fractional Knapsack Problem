@@ -1,0 +1,42 @@
+// Fractional Knapsack Problem
+
+import java.util.Comparator;
+import java.util.*;
+public class Greedy{
+    public static void main(String[] args) {
+        int value[]={60,100,120};
+        int weight[] = {10,20,30};
+        int W = 50;
+
+        // MAKE A 2D ARRAY TO SORT THE RATIOS
+
+        double r[][]=new double[value.length][2];
+        //0th index = original index; 1st = ratio
+
+        for(int i=0;i<value.length;i++){
+            r[i][0]=i;
+            r[i][1]=value[i]/(double)weight[i];//type casted
+        }
+
+        //ascending sort
+        Arrays.sort(r, Comparator.comparingDouble(o -> o[1]));
+        int c=W;
+        int val=0;
+        // choosing items
+        for(int i =value.length-1; i>=0;i--){
+            int idx=(int)r[i][0];
+            if(c>=weight[idx]){
+            val=val+value[idx]; 
+            c=c-weight[idx];
+            }
+            else{
+                val=val+(int)(r[i][1]*c);
+                c=0;
+                break;
+            }
+        }
+        System.out.println(val);
+
+    }
+    
+}
