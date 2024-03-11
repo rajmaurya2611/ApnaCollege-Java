@@ -1,0 +1,37 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		int arr[]={1,1,4,2,7,7,9,3};
+		
+		int l=Integer.MIN_VALUE;
+		for(int i=0;i<arr.length;i++){
+		    l=Math.max(l,arr[i]);
+		}
+		System.out.println(l);
+		
+		int temp[]= new int [l+1];
+		for(int i=0;i<arr.length;i++){
+		    temp[arr[i]]++;
+		}
+		
+		System.out.println(temp.length);
+		int j=0;
+	    for(int i=0;i<=l;i++){
+	        while(temp[i]>0){
+	            arr[j]=i;
+	            j++;
+	            temp[i]--;
+	        }
+	    }
+	    
+	    for(int i=0;i<temp.length;i++){
+	        System.out.print(temp[i]+ " ");
+	        
+	    }
+	    System.out.println(" ");
+	    for(int i=0;i<arr.length;i++){
+	        System.out.print(arr[i]+ " ");
+	    }
+	}
+}
